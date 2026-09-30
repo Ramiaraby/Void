@@ -24,7 +24,7 @@ class Pagination(discord.ui.View):
             await interaction.response.edit_message(content=message)
 
     @discord.ui.button(label="Next", style=discord.ButtonStyle.success)
-    async def Next(self, interaction: discord.Interaction, button: discord.ui.Button):
+    async def next(self, interaction: discord.Interaction, button: discord.ui.Button):
         if self.current_page == len(self.pages) - 1:
             self.current_page = 0
         else:
@@ -36,6 +36,7 @@ class Pagination(discord.ui.View):
             await interaction.response.edit_message(embed=embed)
         if type(self.pages[0]) == str:
             message = self.pages[self.current_page] + f'\nPage {self.current_page+1}/{len(self.pages)}'
+            await interaction.response.edit_message(content=message)
 
     async def on_timeout(self):
         self.stop()

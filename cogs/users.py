@@ -19,7 +19,7 @@ class DeleteView(discord.ui.View):
         self.stop()
 
     @discord.ui.button(
-        label='Delete', style=discord.ButtonStyle.red, emoji='❌'
+        label='Cancel', style=discord.ButtonStyle.red, emoji='❎'
     )
     async def cancel(self, interaction: discord.Interaction, button: discord.Button):
         await interaction.response.send_message('Deletion canceled', ephemeral=True)
@@ -50,6 +50,7 @@ class UserCommands(commands.Cog, name='Users'):
             await self.db.add_new_user(ctx.author.id)
         except ValueError as e:
             await ctx.send(embed=error_handling.error_message(e))
+            return
 
         await ctx.send('You have created an account, you may start your journey!')
 
@@ -59,6 +60,7 @@ class UserCommands(commands.Cog, name='Users'):
             await self.db.get_user_info(ctx.author.id)
         except ValueError as e:
             await ctx.send(embed=error_handling.error_message(e))
+            return
 
         embed = discord.Embed(
             title=':wastebasket: Delete Your Account',
