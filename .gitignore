@@ -1,0 +1,6 @@
+bot token.txt
+__pycache__/
+*.pyc
+.venv
+data/*.db
+__init__.py

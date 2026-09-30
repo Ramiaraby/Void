@@ -1,0 +1,1495 @@
+{
+    "amber_axe": {
+        "name": "Amber Axe",
+        "type": "axe",
+        "rarity": "rare",
+        "modifiers": {
+            "mining_strength": 10
+        },
+        "description": "A warm amber head catches the light as it bites cleanly through stubborn timber.",
+        "craftable": true,
+        "crafting_recipe": {
+            "amber_ingot": 3,
+            "oak_wood": 2
+        },
+        "crafting_station": "anvil"
+    },
+    "amber_dagger": {
+        "name": "Amber Dagger",
+        "type": "weapon",
+        "rarity": "rare",
+        "modifiers": {
+            "strength": 10,
+            "agility": 6
+        },
+        "description": "A compact amber blade with a quick feel in the hand and a surprisingly sharp edge.",
+        "craftable": true,
+        "crafting_recipe": {
+            "amber_ingot": 1,
+            "oak_wood": 1
+        },
+        "crafting_station": "anvil"
+    },
+    "amber_greatsword": {
+        "name": "Amber Greatsword",
+        "type": "weapon",
+        "rarity": "rare",
+        "modifiers": {
+            "strength": 17,
+            "defense": 1,
+            "agility": -4
+        },
+        "description": "Heavy, bright, and difficult to ignore. The amber edge makes every swing memorable.",
+        "craftable": true,
+        "crafting_recipe": {
+            "amber_ingot": 4,
+            "oak_wood": 1
+        },
+        "crafting_station": "anvil"
+    },
+    "amber_ingot": {
+        "name": "Amber Ingot",
+        "type": "material",
+        "rarity": "rare",
+        "modifiers": {},
+        "description": "Amber refined into a solid, workable form, ready for tools and equipment.",
+        "craftable": true,
+        "crafting_recipe": {
+            "amber_ore": 2,
+            "coal": 1
+        },
+        "crafting_station": "furnace"
+    },
+    "amber_ore": {
+        "name": "Amber Ore",
+        "type": "material",
+        "rarity": "uncommon",
+        "modifiers": {},
+        "description": "A rough chunk of mineral-rich amber ore with flashes of orange trapped inside.",
+        "craftable": false,
+        "crafting_recipe": {}
+    },
+    "amber_pickaxe": {
+        "name": "Amber Pickaxe",
+        "type": "pickaxe",
+        "rarity": "rare",
+        "modifiers": {
+            "mining_strength": 10
+        },
+        "description": "The amber head holds up well against stone, making this pickaxe a prized mining tool.",
+        "craftable": true,
+        "crafting_recipe": {
+            "amber_ingot": 3,
+            "oak_wood": 2
+        },
+        "crafting_station": "anvil"
+    },
+    "amber_sword": {
+        "name": "Amber Sword",
+        "type": "weapon",
+        "rarity": "rare",
+        "modifiers": {
+            "strength": 13
+        },
+        "description": "A clear amber blade with enough weight to make each strike count.",
+        "craftable": true,
+        "crafting_recipe": {
+            "amber_ingot": 2,
+            "oak_wood": 1
+        },
+        "crafting_station": "anvil"
+    },
+    "apple": {
+        "name": "Apple",
+        "type": "material",
+        "rarity": "common",
+        "modifiers": {},
+        "description": "Fresh, ordinary, and useful when your last meal was several hours ago.",
+        "craftable": false,
+        "crafting_recipe": {}
+    },
+    "arrow": {
+        "name": "Arrow",
+        "type": "material",
+        "rarity": "common",
+        "modifiers": {},
+        "description": "A simple arrow with a straight wooden shaft and carefully fitted feather fletching.",
+        "craftable": true,
+        "crafting_recipe": {
+            "oak_wood": 1,
+            "feather": 1,
+            "stone": 1
+        },
+        "crafting_station": "workbench"
+    },
+    "birch_wood": {
+        "name": "Birch Wood",
+        "type": "material",
+        "rarity": "uncommon",
+        "modifiers": {},
+        "description": "Pale birch timber with a tight grain. Harder to find, but worth saving for better work.",
+        "craftable": false,
+        "crafting_recipe": {}
+    },
+    "coal": {
+        "name": "Coal",
+        "type": "material",
+        "rarity": "common",
+        "modifiers": {},
+        "description": "Black, brittle fuel that burns hot enough to keep a forge working.",
+        "craftable": false,
+        "crafting_recipe": {}
+    },
+    "demon_bow": {
+        "name": "Demon Bow",
+        "type": "weapon",
+        "rarity": "uncommon",
+        "modifiers": {
+            "strength": 30,
+            "agility": 8
+        },
+        "description": "A dark bow with a strange silhouette. Nobody agrees on who made it, and nobody asks twice.",
+        "craftable": true,
+        "crafting_recipe": {
+            "ruby": 2,
+            "birch_wood": 3,
+            "string": 2
+        },
+        "crafting_station": "anvil"
+    },
+    "diamond": {
+        "name": "Diamond",
+        "type": "material",
+        "rarity": "epic",
+        "modifiers": {},
+        "description": "A brilliantly hard gemstone, cleaned and cut for use in high-end equipment.",
+        "craftable": true,
+        "crafting_recipe": {
+            "diamond_ore": 2,
+            "coal": 2
+        },
+        "crafting_station": "furnace"
+    },
+    "diamond_axe": {
+        "name": "Diamond Axe",
+        "type": "axe",
+        "rarity": "legendary",
+        "modifiers": {
+            "mining_strength": 35
+        },
+        "description": "An absurdly durable axe with a diamond head. Trees have very little say in the matter.",
+        "craftable": true,
+        "crafting_recipe": {
+            "diamond": 3,
+            "oak_wood": 2
+        },
+        "crafting_station": "anvil"
+    },
+    "diamond_boots": {
+        "name": "Diamond Boots",
+        "type": "boots",
+        "rarity": "legendary",
+        "modifiers": {
+            "agility": 4,
+            "hp": 36,
+            "defense": 17
+        },
+        "description": "Heavy protective boots reinforced with diamond, built for places where ordinary footwear gives up.",
+        "craftable": true,
+        "crafting_recipe": {
+            "diamond": 2,
+            "leather": 1,
+            "string": 1
+        },
+        "crafting_station": "anvil"
+    },
+    "diamond_chestplate": {
+        "name": "Diamond Chestplate",
+        "type": "chestplate",
+        "rarity": "legendary",
+        "modifiers": {
+            "hp": 72,
+            "defense": 22
+        },
+        "description": "A formidable chestplate of diamond that turns a dangerous hit into a much smaller problem.",
+        "craftable": true,
+        "crafting_recipe": {
+            "diamond": 4,
+            "leather": 1,
+            "string": 1
+        },
+        "crafting_station": "anvil"
+    },
+    "diamond_dagger": {
+        "name": "Diamond Dagger",
+        "type": "weapon",
+        "rarity": "legendary",
+        "modifiers": {
+            "strength": 19,
+            "agility": 10
+        },
+        "description": "A precise diamond blade made for quick strikes rather than dramatic swings.",
+        "craftable": true,
+        "crafting_recipe": {
+            "diamond": 1,
+            "oak_wood": 1
+        },
+        "crafting_station": "anvil"
+    },
+    "diamond_earrings": {
+        "name": "Diamond Earrings",
+        "type": "accessory",
+        "rarity": "epic",
+        "modifiers": {
+            "strength": 4,
+            "luck": 8
+        },
+        "description": "Small diamond-set earrings that add a little shine and a useful edge to their wearer.",
+        "craftable": true,
+        "crafting_recipe": {
+            "diamond": 2,
+            "gold_ingot": 1
+        },
+        "crafting_station": "anvil"
+    },
+    "diamond_greatsword": {
+        "name": "Diamond Greatsword",
+        "type": "weapon",
+        "rarity": "legendary",
+        "modifiers": {
+            "strength": 24,
+            "defense": 1
+        },
+        "description": "A massive diamond-edged sword. It is not subtle, light, or particularly interested in being subtle.",
+        "craftable": true,
+        "crafting_recipe": {
+            "diamond": 4,
+            "oak_wood": 1
+        },
+        "crafting_station": "anvil"
+    },
+    "diamond_helmet": {
+        "name": "Diamond Helmet",
+        "type": "helmet",
+        "rarity": "legendary",
+        "modifiers": {
+            "hp": 36,
+            "defense": 18
+        },
+        "description": "A hard diamond helmet built to keep the most important part of you protected.",
+        "craftable": true,
+        "crafting_recipe": {
+            "diamond": 2,
+            "leather": 1,
+            "string": 1
+        },
+        "crafting_station": "anvil"
+    },
+    "diamond_leggings": {
+        "name": "Diamond Leggings",
+        "type": "leggings",
+        "rarity": "legendary",
+        "modifiers": {
+            "hp": 54,
+            "defense": 20
+        },
+        "description": "Reinforced diamond leggings offering serious protection without completely ruining mobility.",
+        "craftable": true,
+        "crafting_recipe": {
+            "diamond": 3,
+            "leather": 1,
+            "string": 1
+        },
+        "crafting_station": "anvil"
+    },
+    "diamond_necklace": {
+        "name": "Diamond Necklace",
+        "type": "accessory",
+        "rarity": "epic",
+        "modifiers": {
+            "mana": 16,
+            "hp": 24
+        },
+        "description": "A finely set diamond necklace carrying both value and a faint practical advantage.",
+        "craftable": true,
+        "crafting_recipe": {
+            "diamond": 3,
+            "gold_ingot": 2,
+            "string": 1
+        },
+        "crafting_station": "anvil"
+    },
+    "diamond_ore": {
+        "name": "Diamond Ore",
+        "type": "material",
+        "rarity": "rare",
+        "modifiers": {},
+        "description": "Dense stone threaded with rough diamond crystals. Finding one is the easy part; getting it out is not.",
+        "craftable": false,
+        "crafting_recipe": {}
+    },
+    "diamond_pickaxe": {
+        "name": "Diamond Pickaxe",
+        "type": "pickaxe",
+        "rarity": "legendary",
+        "modifiers": {
+            "mining_strength": 35
+        },
+        "description": "A mining pick made with diamond, capable of breaking through material that stops lesser tools.",
+        "craftable": true,
+        "crafting_recipe": {
+            "diamond": 3,
+            "oak_wood": 2
+        },
+        "crafting_station": "anvil"
+    },
+    "diamond_ring": {
+        "name": "Diamond Ring",
+        "type": "accessory",
+        "rarity": "epic",
+        "modifiers": {
+            "strength": 4,
+            "luck": 8
+        },
+        "description": "A polished diamond ring with enough craftsmanship to be more than just expensive decoration.",
+        "craftable": true,
+        "crafting_recipe": {
+            "diamond": 2,
+            "gold_ingot": 1
+        },
+        "crafting_station": "anvil"
+    },
+    "diamond_staff": {
+        "name": "Diamond Staff",
+        "type": "weapon",
+        "rarity": "legendary",
+        "modifiers": {
+            "mana": 40,
+            "intelligence": 20
+        },
+        "description": "A polished staff crowned with diamond, channeling magic with unusual clarity.",
+        "craftable": true,
+        "crafting_recipe": {
+            "diamond": 3,
+            "birch_wood": 2
+        },
+        "crafting_station": "anvil"
+    },
+    "diamond_sword": {
+        "name": "Diamond Sword",
+        "type": "weapon",
+        "rarity": "legendary",
+        "modifiers": {
+            "strength": 20
+        },
+        "description": "A brilliant diamond sword with a hard edge and an even harder price tag.",
+        "craftable": true,
+        "crafting_recipe": {
+            "diamond": 2,
+            "oak_wood": 1
+        },
+        "crafting_station": "anvil"
+    },
+    "emerald": {
+        "name": "Emerald",
+        "type": "material",
+        "rarity": "epic",
+        "modifiers": {},
+        "description": "A deep green gemstone, cleaned and shaped for use in fine equipment.",
+        "craftable": true,
+        "crafting_recipe": {
+            "emerald_ore": 2,
+            "coal": 1
+        },
+        "crafting_station": "furnace"
+    },
+    "emerald_axe": {
+        "name": "Emerald Axe",
+        "type": "axe",
+        "rarity": "epic",
+        "modifiers": {
+            "mining_strength": 30
+        },
+        "description": "A green-edged axe that makes short work of timber while looking far more expensive than it needs to.",
+        "craftable": true,
+        "crafting_recipe": {
+            "emerald": 3,
+            "oak_wood": 2
+        },
+        "crafting_station": "anvil"
+    },
+    "emerald_dagger": {
+        "name": "Emerald Dagger",
+        "type": "weapon",
+        "rarity": "epic",
+        "modifiers": {
+            "strength": 15,
+            "agility": 8
+        },
+        "description": "A nimble emerald dagger with a balanced grip and a wicked little point.",
+        "craftable": true,
+        "crafting_recipe": {
+            "emerald": 1,
+            "oak_wood": 1
+        },
+        "crafting_station": "anvil"
+    },
+    "emerald_greatsword": {
+        "name": "Emerald Greatsword",
+        "type": "weapon",
+        "rarity": "epic",
+        "modifiers": {
+            "strength": 20,
+            "defense": 1
+        },
+        "description": "A broad emerald greatsword that trades subtlety for reach and raw power.",
+        "craftable": true,
+        "crafting_recipe": {
+            "emerald": 4,
+            "oak_wood": 1
+        },
+        "crafting_station": "anvil"
+    },
+    "emerald_ore": {
+        "name": "Emerald Ore",
+        "type": "material",
+        "rarity": "rare",
+        "modifiers": {},
+        "description": "Stone containing veins of rough emerald. The green flecks are easy to spot once you know what to look for.",
+        "craftable": false,
+        "crafting_recipe": {}
+    },
+    "emerald_pickaxe": {
+        "name": "Emerald Pickaxe",
+        "type": "pickaxe",
+        "rarity": "epic",
+        "modifiers": {
+            "mining_strength": 30
+        },
+        "description": "An emerald-headed pickaxe built for serious mining and the occasional impressive entrance.",
+        "craftable": true,
+        "crafting_recipe": {
+            "emerald": 3,
+            "oak_wood": 2
+        },
+        "crafting_station": "anvil"
+    },
+    "emerald_staff": {
+        "name": "Emerald Staff",
+        "type": "weapon",
+        "rarity": "epic",
+        "modifiers": {
+            "mana": 32,
+            "intelligence": 16
+        },
+        "description": "A green gemstone tops this staff, giving its magic a steady and focused feel.",
+        "craftable": true,
+        "crafting_recipe": {
+            "emerald": 3,
+            "birch_wood": 2
+        },
+        "crafting_station": "anvil"
+    },
+    "emerald_sword": {
+        "name": "Emerald Sword",
+        "type": "weapon",
+        "rarity": "epic",
+        "modifiers": {
+            "strength": 16
+        },
+        "description": "A finely worked emerald sword with a clean edge and a distinctive green sheen.",
+        "craftable": true,
+        "crafting_recipe": {
+            "emerald": 2,
+            "oak_wood": 1
+        },
+        "crafting_station": "anvil"
+    },
+    "empty_bottle": {
+        "name": "Empty Bottle",
+        "type": "potion",
+        "rarity": "common",
+        "modifiers": {},
+        "description": "A clean glass bottle with one job left to do: hold something useful.",
+        "craftable": false,
+        "crafting_recipe": {}
+    },
+    "empty_potion": {
+        "name": "Empty Potion Bottle",
+        "type": "potion",
+        "rarity": "common",
+        "modifiers": {},
+        "description": "An empty potion container, waiting for someone to put something considerably more interesting inside.",
+        "craftable": true,
+        "crafting_recipe": {
+            "empty_bottle": 1
+        },
+        "crafting_station": "workbench"
+    },
+    "feather": {
+        "name": "Feather",
+        "type": "material",
+        "rarity": "common",
+        "modifiers": {},
+        "description": "A light feather useful for fletching, writing, and making arrows fly straight.",
+        "craftable": false,
+        "crafting_recipe": {}
+    },
+    "gold_ingot": {
+        "name": "Gold Ingot",
+        "type": "material",
+        "rarity": "rare",
+        "modifiers": {},
+        "description": "Pure refined gold, ready to be shaped into equipment or turned into something unnecessarily expensive.",
+        "craftable": true,
+        "crafting_recipe": {
+            "golden_ore": 2,
+            "coal": 1
+        },
+        "crafting_station": "furnace"
+    },
+    "golden_apple": {
+        "name": "Golden Apple",
+        "type": "potion",
+        "rarity": "legendary",
+        "modifiers": {
+            "strength": 5,
+            "mana": 30,
+            "hp": 100,
+            "defense": 5
+        },
+        "description": "An apple wrapped in refined gold. Completely excessive, but surprisingly effective.",
+        "craftable": true,
+        "crafting_recipe": {
+            "apple": 1,
+            "gold_ingot": 8
+        },
+        "crafting_station": "workbench"
+    },
+    "golden_axe": {
+        "name": "Golden Axe",
+        "type": "axe",
+        "rarity": "rare",
+        "modifiers": {
+            "mining_strength": 20
+        },
+        "description": "A bright golden axe that looks better than it performs, though it still gets the job done.",
+        "craftable": true,
+        "crafting_recipe": {
+            "gold_ingot": 3,
+            "oak_wood": 2
+        },
+        "crafting_station": "anvil"
+    },
+    "golden_boots": {
+        "name": "Golden Boots",
+        "type": "boots",
+        "rarity": "rare",
+        "modifiers": {
+            "agility": 3,
+            "hp": 24,
+            "defense": 11
+        },
+        "description": "Gold-plated boots with solid protection and enough shine to announce every step.",
+        "craftable": true,
+        "crafting_recipe": {
+            "gold_ingot": 2,
+            "leather": 1,
+            "string": 1
+        },
+        "crafting_station": "anvil"
+    },
+    "golden_chestplate": {
+        "name": "Golden Chestplate",
+        "type": "chestplate",
+        "rarity": "rare",
+        "modifiers": {
+            "hp": 48,
+            "defense": 16
+        },
+        "description": "A gleaming chestplate that combines respectable protection with questionable subtlety.",
+        "craftable": true,
+        "crafting_recipe": {
+            "gold_ingot": 4,
+            "leather": 1,
+            "string": 1
+        },
+        "crafting_station": "anvil"
+    },
+    "golden_dagger": {
+        "name": "Golden Dagger",
+        "type": "weapon",
+        "rarity": "rare",
+        "modifiers": {
+            "strength": 10,
+            "agility": 5
+        },
+        "description": "A polished golden dagger with a fine point and an even finer appearance.",
+        "craftable": true,
+        "crafting_recipe": {
+            "gold_ingot": 1,
+            "oak_wood": 1
+        },
+        "crafting_station": "anvil"
+    },
+    "golden_earrings": {
+        "name": "Golden Earrings",
+        "type": "accessory",
+        "rarity": "rare",
+        "modifiers": {
+            "strength": 2,
+            "luck": 5
+        },
+        "description": "Small gold earrings made for a bit of style, a bit of luck, and absolutely no subtlety.",
+        "craftable": true,
+        "crafting_recipe": {
+            "gold_ingot": 2
+        },
+        "crafting_station": "anvil"
+    },
+    "golden_greatsword": {
+        "name": "Golden Greatsword",
+        "type": "weapon",
+        "rarity": "rare",
+        "modifiers": {
+            "strength": 15,
+            "defense": 1
+        },
+        "description": "A huge golden blade that is heavy, bright, and very difficult to lose in a dark room.",
+        "craftable": true,
+        "crafting_recipe": {
+            "gold_ingot": 4,
+            "oak_wood": 1
+        },
+        "crafting_station": "anvil"
+    },
+    "golden_helmet": {
+        "name": "Golden Helmet",
+        "type": "helmet",
+        "rarity": "rare",
+        "modifiers": {
+            "hp": 24,
+            "defense": 12
+        },
+        "description": "A polished gold helmet that protects the head and makes hiding nearly impossible.",
+        "craftable": true,
+        "crafting_recipe": {
+            "gold_ingot": 2,
+            "leather": 1,
+            "string": 1
+        },
+        "crafting_station": "anvil"
+    },
+    "golden_leggings": {
+        "name": "Golden Leggings",
+        "type": "leggings",
+        "rarity": "rare",
+        "modifiers": {
+            "hp": 36,
+            "defense": 14
+        },
+        "description": "Gold-plated leggings offering sturdy protection with a distinctly expensive look.",
+        "craftable": true,
+        "crafting_recipe": {
+            "gold_ingot": 3,
+            "leather": 1,
+            "string": 1
+        },
+        "crafting_station": "anvil"
+    },
+    "golden_necklace": {
+        "name": "Golden Necklace",
+        "type": "accessory",
+        "rarity": "rare",
+        "modifiers": {
+            "mana": 10,
+            "hp": 15
+        },
+        "description": "A carefully worked gold necklace that is valuable enough to keep somewhere safer than your pocket.",
+        "craftable": true,
+        "crafting_recipe": {
+            "gold_ingot": 3,
+            "string": 1
+        },
+        "crafting_station": "anvil"
+    },
+    "golden_ore": {
+        "name": "Golden Ore",
+        "type": "material",
+        "rarity": "uncommon",
+        "modifiers": {},
+        "description": "Rock containing visible traces of gold, waiting to be separated from everything less valuable.",
+        "craftable": false,
+        "crafting_recipe": {}
+    },
+    "golden_pickaxe": {
+        "name": "Golden Pickaxe",
+        "type": "pickaxe",
+        "rarity": "rare",
+        "modifiers": {
+            "mining_strength": 20
+        },
+        "description": "A golden mining pick with a polished finish and a reputation for getting the job done quickly.",
+        "craftable": true,
+        "crafting_recipe": {
+            "gold_ingot": 3,
+            "oak_wood": 2
+        },
+        "crafting_station": "anvil"
+    },
+    "golden_ring": {
+        "name": "Golden Ring",
+        "type": "accessory",
+        "rarity": "rare",
+        "modifiers": {
+            "strength": 2,
+            "luck": 5
+        },
+        "description": "A simple gold ring with clean craftsmanship and just enough luck to make it worth wearing.",
+        "craftable": true,
+        "crafting_recipe": {
+            "gold_ingot": 2
+        },
+        "crafting_station": "anvil"
+    },
+    "golden_rod": {
+        "name": "Golden Fishing Rod",
+        "type": "fishing_rod",
+        "rarity": "rare",
+        "modifiers": {
+            "fishing_power": 30,
+            "luck": 10
+        },
+        "description": "A polished fishing rod built for long trips and the occasional suspiciously shiny catch.",
+        "craftable": true,
+        "crafting_recipe": {
+            "gold_ingot": 3,
+            "ruby": 2,
+            "birch_wood": 2,
+            "string": 2
+        },
+        "crafting_station": "workbench"
+    },
+    "golden_sword": {
+        "name": "Golden Sword",
+        "type": "weapon",
+        "rarity": "rare",
+        "modifiers": {
+            "strength": 11
+        },
+        "description": "A bright golden sword that looks like it belongs in a royal armory.",
+        "craftable": true,
+        "crafting_recipe": {
+            "gold_ingot": 2,
+            "oak_wood": 1
+        },
+        "crafting_station": "anvil"
+    },
+    "health_potion": {
+        "name": "Health Potion",
+        "type": "potion",
+        "rarity": "uncommon",
+        "modifiers": {
+            "hp": 60
+        },
+        "description": "A reliable red draught that puts some life back into anyone still standing.",
+        "craftable": true,
+        "crafting_recipe": {
+            "apple": 2,
+            "empty_bottle": 1
+        },
+        "crafting_station": "workbench"
+    },
+    "iron_axe": {
+        "name": "Iron Axe",
+        "type": "axe",
+        "rarity": "uncommon",
+        "modifiers": {
+            "mining_strength": 15
+        },
+        "description": "A dependable iron axe made for repeated work rather than showing off.",
+        "craftable": true,
+        "crafting_recipe": {
+            "iron_ingot": 3,
+            "oak_wood": 2
+        },
+        "crafting_station": "anvil"
+    },
+    "iron_boots": {
+        "name": "Iron Boots",
+        "type": "boots",
+        "rarity": "uncommon",
+        "modifiers": {
+            "agility": 2,
+            "hp": 18,
+            "defense": 8
+        },
+        "description": "Sturdy iron boots built to take a beating from stone, mud, and everything in between.",
+        "craftable": true,
+        "crafting_recipe": {
+            "iron_ingot": 2,
+            "leather": 1,
+            "string": 1
+        },
+        "crafting_station": "anvil"
+    },
+    "iron_chestplate": {
+        "name": "Iron Chestplate",
+        "type": "chestplate",
+        "rarity": "uncommon",
+        "modifiers": {
+            "hp": 36,
+            "defense": 13
+        },
+        "description": "A solid iron chestplate that has earned its place as dependable everyday armor.",
+        "craftable": true,
+        "crafting_recipe": {
+            "iron_ingot": 4,
+            "leather": 1,
+            "string": 1
+        },
+        "crafting_station": "anvil"
+    },
+    "iron_dagger": {
+        "name": "Iron Dagger",
+        "type": "weapon",
+        "rarity": "uncommon",
+        "modifiers": {
+            "strength": 7,
+            "agility": 4
+        },
+        "description": "A compact iron blade with a sturdy grip and no unnecessary decoration.",
+        "craftable": true,
+        "crafting_recipe": {
+            "iron_ingot": 1,
+            "oak_wood": 1
+        },
+        "crafting_station": "anvil"
+    },
+    "iron_greatsword": {
+        "name": "Iron Greatsword",
+        "type": "weapon",
+        "rarity": "uncommon",
+        "modifiers": {
+            "strength": 12,
+            "defense": 1
+        },
+        "description": "A heavy iron greatsword built for strong swings and straightforward problems.",
+        "craftable": true,
+        "crafting_recipe": {
+            "iron_ingot": 4,
+            "oak_wood": 1
+        },
+        "crafting_station": "anvil"
+    },
+    "iron_helmet": {
+        "name": "Iron Helmet",
+        "type": "helmet",
+        "rarity": "uncommon",
+        "modifiers": {
+            "hp": 18,
+            "defense": 9
+        },
+        "description": "A practical iron helmet that values protection over appearances.",
+        "craftable": true,
+        "crafting_recipe": {
+            "iron_ingot": 2,
+            "leather": 1,
+            "string": 1
+        },
+        "crafting_station": "anvil"
+    },
+    "iron_ingot": {
+        "name": "Iron Ingot",
+        "type": "material",
+        "rarity": "uncommon",
+        "modifiers": {},
+        "description": "Refined iron, forged into a clean bar and ready for serious work.",
+        "craftable": true,
+        "crafting_recipe": {
+            "iron_ore": 2,
+            "coal": 1
+        },
+        "crafting_station": "furnace"
+    },
+    "iron_leggings": {
+        "name": "Iron Leggings",
+        "type": "leggings",
+        "rarity": "uncommon",
+        "modifiers": {
+            "hp": 27,
+            "defense": 11
+        },
+        "description": "Reliable iron leggings that protect the legs without pretending to be lightweight.",
+        "craftable": true,
+        "crafting_recipe": {
+            "iron_ingot": 3,
+            "leather": 1,
+            "string": 1
+        },
+        "crafting_station": "anvil"
+    },
+    "iron_ore": {
+        "name": "Iron Ore",
+        "type": "material",
+        "rarity": "common",
+        "modifiers": {},
+        "description": "Raw iron-bearing rock, common enough to find and useful enough to keep.",
+        "craftable": false,
+        "crafting_recipe": {}
+    },
+    "iron_pickaxe": {
+        "name": "Iron Pickaxe",
+        "type": "pickaxe",
+        "rarity": "uncommon",
+        "modifiers": {
+            "mining_strength": 15
+        },
+        "description": "A dependable iron pickaxe suited to long days underground and plenty of broken stone.",
+        "craftable": true,
+        "crafting_recipe": {
+            "iron_ingot": 3,
+            "oak_wood": 2
+        },
+        "crafting_station": "anvil"
+    },
+    "iron_sword": {
+        "name": "Iron Sword",
+        "type": "weapon",
+        "rarity": "uncommon",
+        "modifiers": {
+            "strength": 8
+        },
+        "description": "A balanced iron sword with a sturdy blade made to survive regular use.",
+        "craftable": true,
+        "crafting_recipe": {
+            "iron_ingot": 2,
+            "oak_wood": 1
+        },
+        "crafting_station": "anvil"
+    },
+    "large_health_potion": {
+        "name": "Large Health Potion",
+        "type": "potion",
+        "rarity": "rare",
+        "modifiers": {
+            "hp": 120
+        },
+        "description": "A stronger healing draught for the moments when a normal potion simply is not enough.",
+        "craftable": true,
+        "crafting_recipe": {
+            "apple": 4,
+            "empty_bottle": 1
+        },
+        "crafting_station": "workbench"
+    },
+    "leather": {
+        "name": "Leather",
+        "type": "material",
+        "rarity": "common",
+        "modifiers": {},
+        "description": "Treated hide that is flexible, durable, and useful for making practical gear.",
+        "craftable": false,
+        "crafting_recipe": {}
+    },
+    "leather_boots": {
+        "name": "Leather Boots",
+        "type": "boots",
+        "rarity": "common",
+        "modifiers": {
+            "hp": 6,
+            "defense": 2
+        },
+        "description": "Simple leather boots that keep your feet protected without weighing them down.",
+        "craftable": true,
+        "crafting_recipe": {
+            "leather": 4,
+            "string": 1
+        },
+        "crafting_station": "anvil"
+    },
+    "leather_chestplate": {
+        "name": "Leather Chestplate",
+        "type": "chestplate",
+        "rarity": "common",
+        "modifiers": {
+            "hp": 12,
+            "defense": 7
+        },
+        "description": "Layered leather armor offering light protection while keeping movement easy.",
+        "craftable": true,
+        "crafting_recipe": {
+            "leather": 8,
+            "string": 2
+        },
+        "crafting_station": "anvil"
+    },
+    "leather_helmet": {
+        "name": "Leather Helmet",
+        "type": "helmet",
+        "rarity": "common",
+        "modifiers": {
+            "hp": 6,
+            "defense": 3
+        },
+        "description": "A fitted leather cap that gives the head some protection without feeling like a bucket.",
+        "craftable": true,
+        "crafting_recipe": {
+            "leather": 5,
+            "string": 1
+        },
+        "crafting_station": "anvil"
+    },
+    "leather_leggings": {
+        "name": "Leather Leggings",
+        "type": "leggings",
+        "rarity": "common",
+        "modifiers": {
+            "hp": 9,
+            "defense": 5
+        },
+        "description": "Flexible leather leggings suited to travel, light combat, and getting out of trouble quickly.",
+        "craftable": true,
+        "crafting_recipe": {
+            "leather": 7,
+            "string": 2
+        },
+        "crafting_station": "anvil"
+    },
+    "oak_wood": {
+        "name": "Oak Wood",
+        "type": "material",
+        "rarity": "common",
+        "modifiers": {},
+        "description": "Strong, common oak timber that makes a reliable starting point for tools and equipment.",
+        "craftable": false,
+        "crafting_recipe": {}
+    },
+    "reinforced_rod": {
+        "name": "Reinforced Fishing Rod",
+        "type": "fishing_rod",
+        "rarity": "uncommon",
+        "modifiers": {
+            "fishing_power": 20,
+            "luck": 5
+        },
+        "description": "A strengthened fishing rod built to handle catches that ordinary rods would rather not meet.",
+        "craftable": true,
+        "crafting_recipe": {
+            "iron_ingot": 2,
+            "oak_wood": 2,
+            "string": 2
+        },
+        "crafting_station": "workbench"
+    },
+    "royal_boots": {
+        "name": "Royal Boots",
+        "type": "boots",
+        "rarity": "legendary",
+        "modifiers": {
+            "strength": 3,
+            "agility": 2,
+            "hp": 66,
+            "defense": 22
+        },
+        "description": "Elegant reinforced boots made for someone who expects both protection and proper presentation.",
+        "craftable": true,
+        "crafting_recipe": {
+            "gold_ingot": 2,
+            "diamond": 1,
+            "leather": 2,
+            "string": 1
+        },
+        "crafting_station": "anvil"
+    },
+    "royal_chestplate": {
+        "name": "Royal Chestplate",
+        "type": "chestplate",
+        "rarity": "legendary",
+        "modifiers": {
+            "strength": 3,
+            "agility": 2,
+            "hp": 66,
+            "defense": 22
+        },
+        "description": "A finely crafted chestplate combining heavy protection with unmistakable royal workmanship.",
+        "craftable": true,
+        "crafting_recipe": {
+            "gold_ingot": 4,
+            "diamond": 2,
+            "leather": 4,
+            "string": 2
+        },
+        "crafting_station": "anvil"
+    },
+    "royal_helmet": {
+        "name": "Royal Helmet",
+        "type": "helmet",
+        "rarity": "legendary",
+        "modifiers": {
+            "strength": 3,
+            "agility": 2,
+            "hp": 66,
+            "defense": 22
+        },
+        "description": "A decorated royal helmet made to protect its wearer and make their rank obvious from a distance.",
+        "craftable": true,
+        "crafting_recipe": {
+            "gold_ingot": 2,
+            "diamond": 1,
+            "leather": 2,
+            "string": 1
+        },
+        "crafting_station": "anvil"
+    },
+    "royal_leggings": {
+        "name": "Royal Leggings",
+        "type": "leggings",
+        "rarity": "legendary",
+        "modifiers": {
+            "strength": 3,
+            "agility": 2,
+            "hp": 66,
+            "defense": 22
+        },
+        "description": "Well-fitted royal leggings with strong protection and craftsmanship fit for a court armory.",
+        "craftable": true,
+        "crafting_recipe": {
+            "gold_ingot": 3,
+            "diamond": 1,
+            "leather": 3,
+            "string": 2
+        },
+        "crafting_station": "anvil"
+    },
+    "ruby": {
+        "name": "Ruby",
+        "type": "material",
+        "rarity": "epic",
+        "modifiers": {},
+        "description": "A deep red gemstone prized for its color and usefulness in specialized equipment.",
+        "craftable": true,
+        "crafting_recipe": {
+            "ruby_ore": 2,
+            "coal": 1
+        },
+        "crafting_station": "workbench"
+    },
+    "ruby_axe": {
+        "name": "Ruby Axe",
+        "type": "axe",
+        "rarity": "epic",
+        "modifiers": {
+            "mining_strength": 25
+        },
+        "description": "A red gemstone-headed axe with a vicious edge and no interest in staying unnoticed.",
+        "craftable": true,
+        "crafting_recipe": {
+            "ruby": 3,
+            "oak_wood": 2
+        },
+        "crafting_station": "anvil"
+    },
+    "ruby_dagger": {
+        "name": "Ruby Dagger",
+        "type": "weapon",
+        "rarity": "epic",
+        "modifiers": {
+            "strength": 15,
+            "agility": 8
+        },
+        "description": "A sharp ruby dagger with a compact profile and a striking red finish.",
+        "craftable": true,
+        "crafting_recipe": {
+            "ruby": 1,
+            "oak_wood": 1
+        },
+        "crafting_station": "anvil"
+    },
+    "ruby_greatsword": {
+        "name": "Ruby Greatsword",
+        "type": "weapon",
+        "rarity": "epic",
+        "modifiers": {
+            "strength": 20,
+            "defense": 1
+        },
+        "description": "A heavy ruby greatsword that brings a little color to an otherwise very serious weapon.",
+        "craftable": true,
+        "crafting_recipe": {
+            "ruby": 4,
+            "oak_wood": 1
+        },
+        "crafting_station": "anvil"
+    },
+    "ruby_ore": {
+        "name": "Ruby Ore",
+        "type": "material",
+        "rarity": "rare",
+        "modifiers": {},
+        "description": "Dark ore containing bright red ruby crystals that catch the light through the rough stone.",
+        "craftable": false,
+        "crafting_recipe": {}
+    },
+    "ruby_pickaxe": {
+        "name": "Ruby Pickaxe",
+        "type": "pickaxe",
+        "rarity": "epic",
+        "modifiers": {
+            "mining_strength": 25
+        },
+        "description": "A ruby-headed mining tool built for hard work and harder rock.",
+        "craftable": true,
+        "crafting_recipe": {
+            "ruby": 3,
+            "oak_wood": 2
+        },
+        "crafting_station": "anvil"
+    },
+    "ruby_staff": {
+        "name": "Ruby Staff",
+        "type": "weapon",
+        "rarity": "epic",
+        "modifiers": {
+            "mana": 32,
+            "intelligence": 16
+        },
+        "description": "A red gemstone crowns this staff, giving its magic a strong and focused character.",
+        "craftable": true,
+        "crafting_recipe": {
+            "ruby": 3,
+            "birch_wood": 2
+        },
+        "crafting_station": "anvil"
+    },
+    "ruby_sword": {
+        "name": "Ruby Sword",
+        "type": "weapon",
+        "rarity": "epic",
+        "modifiers": {
+            "strength": 16
+        },
+        "description": "A red-edged sword with a solid balance and an unmistakable gemstone finish.",
+        "craftable": true,
+        "crafting_recipe": {
+            "ruby": 2,
+            "oak_wood": 1
+        },
+        "crafting_station": "anvil"
+    },
+    "shiny_bow": {
+        "name": "Shiny Bow",
+        "type": "weapon",
+        "rarity": "uncommon",
+        "modifiers": {
+            "strength": 4,
+            "agility": 8
+        },
+        "description": "A polished bow with a clean finish that catches the light just before the arrow does.",
+        "craftable": true,
+        "crafting_recipe": {
+            "gold_ingot": 2,
+            "birch_wood": 3,
+            "string": 2
+        },
+        "crafting_station": "anvil"
+    },
+    "silver_earrings": {
+        "name": "Silver Earrings",
+        "type": "accessory",
+        "rarity": "uncommon",
+        "modifiers": {
+            "strength": 1,
+            "luck": 3
+        },
+        "description": "Polished silver earrings with a clean design and a subtle touch of luck.",
+        "craftable": false,
+        "crafting_recipe": {}
+    },
+    "silver_necklace": {
+        "name": "Silver Necklace",
+        "type": "accessory",
+        "rarity": "uncommon",
+        "modifiers": {
+            "mana": 6,
+            "hp": 9
+        },
+        "description": "A simple silver necklace, carefully made and easy to wear with almost anything.",
+        "craftable": false,
+        "crafting_recipe": {}
+    },
+    "silver_ring": {
+        "name": "Silver Ring",
+        "type": "accessory",
+        "rarity": "uncommon",
+        "modifiers": {
+            "strength": 1,
+            "luck": 3
+        },
+        "description": "A smooth silver ring with understated craftsmanship and a useful little bonus.",
+        "craftable": false,
+        "crafting_recipe": {}
+    },
+    "small_health_potion": {
+        "name": "Small Health Potion",
+        "type": "potion",
+        "rarity": "common",
+        "modifiers": {
+            "hp": 25
+        },
+        "description": "A modest healing draught for scratches, bruises, and other problems that have not become disasters yet.",
+        "craftable": true,
+        "crafting_recipe": {
+            "apple": 1,
+            "empty_bottle": 1
+        },
+        "crafting_station": "workbench"
+    },
+    "stone": {
+        "name": "Stone",
+        "type": "material",
+        "rarity": "common",
+        "modifiers": {},
+        "description": "A solid piece of ordinary stone, useful for tools, construction, and hitting things when necessary.",
+        "craftable": false,
+        "crafting_recipe": {}
+    },
+    "string": {
+        "name": "String",
+        "type": "material",
+        "rarity": "common",
+        "modifiers": {},
+        "description": "Strong twisted fiber suitable for bows, bindings, fishing gear, and anything else that needs to stay together.",
+        "craftable": false,
+        "crafting_recipe": {}
+    },
+    "topaz": {
+        "name": "Topaz",
+        "type": "material",
+        "rarity": "rare",
+        "modifiers": {},
+        "description": "A clear golden-yellow gemstone valued for its color and magical potential.",
+        "craftable": false,
+        "crafting_recipe": {}
+    },
+    "topaz_staff": {
+        "name": "Topaz Staff",
+        "type": "weapon",
+        "rarity": "uncommon",
+        "modifiers": {
+            "mana": 16,
+            "intelligence": 8
+        },
+        "description": "A topaz-tipped staff with a warm glow and a knack for steady spellwork.",
+        "craftable": false,
+        "crafting_recipe": {}
+    },
+    "wooden_axe": {
+        "name": "Wooden Axe",
+        "type": "axe",
+        "rarity": "common",
+        "modifiers": {
+            "mining_strength": 5
+        },
+        "description": "A basic wooden axe for gathering your first resources and learning why better tools exist.",
+        "craftable": true,
+        "crafting_recipe": {
+            "oak_wood": 3,
+            "stone": 2
+        },
+        "crafting_station": "anvil"
+    },
+    "wooden_bow": {
+        "name": "Wooden Bow",
+        "type": "weapon",
+        "rarity": "common",
+        "modifiers": {
+            "strength": 1,
+            "agility": 3
+        },
+        "description": "A simple wooden bow that gets the job done without asking much in return.",
+        "craftable": true,
+        "crafting_recipe": {
+            "oak_wood": 3,
+            "string": 2
+        },
+        "crafting_station": "anvil"
+    },
+    "wooden_dagger": {
+        "name": "Wooden Dagger",
+        "type": "weapon",
+        "rarity": "common",
+        "modifiers": {
+            "strength": 2,
+            "agility": 1
+        },
+        "description": "A crude wooden blade, useful for practice and slightly less useful for everything else.",
+        "craftable": true,
+        "crafting_recipe": {
+            "oak_wood": 1,
+            "stone": 1
+        },
+        "crafting_station": "anvil"
+    },
+    "wooden_greatsword": {
+        "name": "Wooden Greatsword",
+        "type": "weapon",
+        "rarity": "common",
+        "modifiers": {
+            "strength": 7,
+            "defense": 1
+        },
+        "description": "A large wooden training blade. Mostly useful for practice, intimidation, and questionable decisions.",
+        "craftable": true,
+        "crafting_recipe": {
+            "oak_wood": 4,
+            "stone": 2
+        },
+        "crafting_station": "anvil"
+    },
+    "wooden_pickaxe": {
+        "name": "Wooden Pickaxe",
+        "type": "pickaxe",
+        "rarity": "common",
+        "modifiers": {
+            "mining_strength": 5
+        },
+        "description": "A basic wooden pickaxe for breaking softer stone and starting your mining career.",
+        "craftable": true,
+        "crafting_recipe": {
+            "oak_wood": 3,
+            "stone": 2
+        },
+        "crafting_station": "anvil"
+    },
+    "wooden_rod": {
+        "name": "Wooden Fishing Rod",
+        "type": "fishing_rod",
+        "rarity": "common",
+        "modifiers": {
+            "fishing_power": 10
+        },
+        "description": "A simple wooden fishing rod for anyone willing to sit still long enough to catch something.",
+        "craftable": true,
+        "crafting_recipe": {
+            "oak_wood": 3,
+            "string": 1
+        },
+        "crafting_station": "workbench"
+    },
+    "wooden_sword": {
+        "name": "Wooden Sword",
+        "type": "weapon",
+        "rarity": "common",
+        "modifiers": {
+            "strength": 3
+        },
+        "description": "A wooden training sword that teaches the basics without immediately sending anyone to the healer.",
+        "craftable": true,
+        "crafting_recipe": {
+            "oak_wood": 2,
+            "stone": 1
+        },
+        "crafting_station": "anvil"
+    }
+}
