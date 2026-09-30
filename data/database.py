@@ -77,8 +77,8 @@ class MainDB:
                 accessory TEXT DEFAULT NULL,
                 weapon TEXT DEFAULT NULL,
                 pickaxe TEXT DEFAULT NULL,
-                axe DEFAULT NULL,
-                fishing_rod DEFAULT NULL,
+                axe TEXT DEFAULT NULL,
+                fishing_rod TEXT DEFAULT NULL,
 
                 location_x INTEGER DEFAULT 0,
                 location_y INTEGER DEFAULT 0
