@@ -1,6 +1,9 @@
+import io
+
 import discord
+from cogs.utility import Pagination
 from game_logic.error_handling import error_message
-from game_logic.image_creation import create_profile_image
+from game_logic.image_creation import create_profile_image, create_inventory_pages
 from discord.ext import commands
 from data.database import MainDB
 
@@ -85,14 +88,18 @@ class UserCommands(commands.Cog, name='Users'):
         await ctx.send(file=file)
         
 
-    @commands.command(name='inventory', help='Check your inventory.')
+    @commands.command(name='inv', aliases=['inventory'], help='Check your inventory.')
     async def inv(self, ctx: commands.Context):
         try:
-            inventory = await self.db.search_inventory(ctx.author.id)
+            pages, captions = await create_inventory_pages(self.db, ctx.author)
         except ValueError as e:
             await ctx.send(embed=error_message(e))
             return
 
-        embed = discord.Embed(title='Your Inventory!', color=discord.Color.darker_grey())
-        embed.set_author(name=ctx.author.name, icon_url=ctx.author.display_avatar)
-        
+        if len(pages) == 1:
+            # nothing to flip through, so no buttons
+            await ctx.send(content=captions[0], file=discord.File(io.BytesIO(pages[0]), filename='inventory.png'))
+            return
+
+        view = Pagination(pages, author_id=ctx.author.id, filename='inventory')
+        view.message = await ctx.send(**view.send_kwargs(), view=view)

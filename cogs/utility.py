@@ -1,44 +1,93 @@
-import discord 
+import io
+
+import discord
 from discord.ext import commands
 
 
 class Pagination(discord.ui.View):
-    def __init__(self, pages: list, current_page: int = 0):
+    """
+    Back / Next buttons over a list of pages. A page can be:
+      - discord.Embed
+      - str
+      - image bytes (or io.BytesIO / discord.File, which are read once and kept as bytes)
+
+    For image pages, `captions` (optional, one str per page) is shown as the message text.
+    Send the first page with:  view.message = await ctx.send(**view.send_kwargs(), view=view)
+    """
+
+    def __init__(self, pages: list, current_page: int = 0, captions: list = None,
+                 author_id: int = None, filename: str = 'page'):
         super().__init__(timeout=60)
-        self.pages = pages
+        self.pages = [self._normalize(page) for page in pages]
         self.current_page = current_page
+        self.captions = captions
+        self.author_id = author_id  # if set, only this user can press the buttons
+        self.filename = filename
+        self.message = None  # set after sending, so the buttons can be disabled on timeout
+
+    @staticmethod
+    def _normalize(page):
+        """discord.File / BytesIO can only be sent once, so keep file pages as plain bytes."""
+        if isinstance(page, discord.File):
+            data = page.fp.read()
+            page.fp.seek(0)
+            return data
+        if isinstance(page, io.BytesIO):
+            return page.getvalue()
+        return page
+
+    def _payload(self) -> dict:
+        page = self.pages[self.current_page]
+        footer = f'Page {self.current_page + 1}/{len(self.pages)}'
+
+        if isinstance(page, discord.Embed):
+            page.set_footer(text=footer)
+            return {'embed': page}
+
+        if isinstance(page, str):
+            return {'content': f'{page}\n{footer}'}
+
+        caption = self.captions[self.current_page] if self.captions else ''
+        return {
+            'content': f'{caption}\n{footer}'.strip(),
+            'file': discord.File(io.BytesIO(page), filename=f'{self.filename}_{self.current_page + 1}.png'),
+        }
+
+    def send_kwargs(self) -> dict:
+        """Keyword arguments for ctx.send() / channel.send() for the current page."""
+        return self._payload()
+
+    async def _show_page(self, interaction: discord.Interaction):
+        payload = self._payload()
+        if 'file' in payload:
+            # editing a message replaces its attachments, so swap the old image for the new one
+            payload['attachments'] = [payload.pop('file')]
+        await interaction.response.edit_message(**payload, view=self)
 
     @discord.ui.button(label="Back", style=discord.ButtonStyle.danger)
     async def back(self, interaction: discord.Interaction, button: discord.ui.Button):
-        if self.current_page == 0:
-            self.current_page = len(self.pages) - 1
-        else:
-            self.current_page -= 1
-
-        if type(self.pages[0]) == discord.Embed:
-            embed: discord.Embed = self.pages[self.current_page]
-            embed.set_footer(text=f'Page {self.current_page+1}/{len(self.pages)}')
-            await interaction.response.edit_message(embed=embed)
-        if type(self.pages[0]) == str:
-            message = self.pages[self.current_page] + f'\nPage {self.current_page+1}/{len(self.pages)}'
-            await interaction.response.edit_message(content=message)
+        self.current_page = (self.current_page - 1) % len(self.pages)
+        await self._show_page(interaction)
 
     @discord.ui.button(label="Next", style=discord.ButtonStyle.success)
     async def next(self, interaction: discord.Interaction, button: discord.ui.Button):
-        if self.current_page == len(self.pages) - 1:
-            self.current_page = 0
-        else:
-            self.current_page += 1
+        self.current_page = (self.current_page + 1) % len(self.pages)
+        await self._show_page(interaction)
 
-        if type(self.pages[0]) == discord.Embed:
-            embed: discord.Embed = self.pages[self.current_page]
-            embed.set_footer(text=f'Page {self.current_page+1}/{len(self.pages)}')
-            await interaction.response.edit_message(embed=embed)
-        if type(self.pages[0]) == str:
-            message = self.pages[self.current_page] + f'\nPage {self.current_page+1}/{len(self.pages)}'
-            await interaction.response.edit_message(content=message)
+    async def interaction_check(self, interaction: discord.Interaction) -> bool:
+        if self.author_id is not None and interaction.user.id != self.author_id:
+            await interaction.response.send_message("❌ These buttons aren't for you.", ephemeral=True)
+            return False
+        return True
 
     async def on_timeout(self):
+        for child in self.children:
+            child.disabled = True
+        if self.message is not None:
+            try:
+                await self.message.edit(view=self)
+            except discord.HTTPException:
+                pass
         self.stop()
 
 class HelpSelect(discord.ui.Select):

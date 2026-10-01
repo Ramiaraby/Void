@@ -257,3 +257,179 @@ async def create_profile_image(db: MainDB, user: discord.User):
     # Pillow work is CPU-bound; keep it off the event loop so the bot stays responsive
     buffer = await asyncio.to_thread(_render, user_info, stats, name, required_exp)
     return discord.File(buffer, filename='profile.png')
+
+
+# ___________________________
+# INVENTORY
+# ___________________________
+
+# same pixel sizes as the profile template: 18px frame, 96px slots, 6px gaps
+INV_FRAME = 18
+INV_SLOT = 96
+INV_GAP = 6
+INV_COLS, INV_ROWS = 7, 3
+INV_PER_PAGE = INV_COLS * INV_ROWS
+INV_HEADER_H = 60
+INV_ICON_BOX = 80
+
+FRAME_OUTER = (217, 160, 102)
+FRAME_INNER = (237, 211, 135)
+GRID_BG = (151, 106, 62)
+SLOT_FILL = (178, 136, 95)
+QTY_OUTLINE = (60, 40, 25)
+SLOT_NUMBER = (120, 85, 50)
+
+RARITY_COLOURS = {
+    'uncommon': (110, 205, 90),
+    'rare': (84, 150, 220),
+    'epic': (180, 105, 225),
+    'legendary': (245, 170, 50),
+}
+RARITY_ORDER = ('legendary', 'epic', 'rare', 'uncommon', 'common')
+TYPE_ORDER = (
+    'weapon', 'helmet', 'chestplate', 'leggings', 'boots', 'accessory',
+    'pickaxe', 'axe', 'fishing_rod', 'potion', 'material',
+)
+
+
+def _fmt_qty(n: int) -> str:
+    """Slot-sized quantity: 999, 12K, 3M (the font has no comma/dot)."""
+    if n < 10_000:
+        return str(n)
+    if n < 1_000_000:
+        return f'{n // 1000}K'
+    return f'{n // 1_000_000}M'
+
+
+def _load_icon(item_type: str, item_id: str):
+    """Item sprite scaled by a whole number to fit the slot, or None if the asset is missing."""
+    path = ASSETS / item_type / f'{item_id}.png'
+    if not path.is_file():
+        return None
+    img = Image.open(path).convert('RGBA')
+    scale = max(1, INV_ICON_BOX // max(img.size))
+    return img.resize((img.width * scale, img.height * scale), resample=Image.Resampling.NEAREST)
+
+
+QUESTION_MARK = (
+    ".###.",
+    "#...#",
+    "....#",
+    "...#.",
+    "..#..",
+    ".....",
+    "..#..",
+)
+
+
+def _draw_question_mark(draw, cx: int, cy: int, px: int = 7):
+    """Hand-drawn '?' for items whose asset file is missing (the font has no '?' glyph)."""
+    left = cx - len(QUESTION_MARK[0]) * px // 2
+    top = cy - len(QUESTION_MARK) * px // 2
+    for offset, colour in ((3, QTY_OUTLINE), (0, TEXT)):
+        for row, line in enumerate(QUESTION_MARK):
+            for col, ch in enumerate(line):
+                if ch == '#':
+                    x, y = left + col * px + offset, top + row * px + offset
+                    draw.rectangle((x, y, x + px - 1, y + px - 1), fill=colour)
+
+
+def _outlined_text(draw, xy, text, font, anchor):
+    x, y = xy
+    for dx, dy in ((-2, 0), (2, 0), (0, -2), (0, 2), (-2, -2), (2, -2), (-2, 2), (2, 2)):
+        draw.text((x + dx, y + dy), text, font=font, fill=QTY_OUTLINE, anchor=anchor)
+    draw.text((x, y), text, font=font, fill=TEXT, anchor=anchor)
+
+
+def _draw_inventory_slot(canvas, draw, x, y, number, entry):
+    draw.rectangle((x, y, x + INV_SLOT - 1, y + INV_SLOT - 1), fill=SLOT_FILL)
+    if entry is None:
+        return
+
+    colour = RARITY_COLOURS.get(entry['rarity'])
+    if colour:
+        draw.rectangle((x + 3, y + 3, x + INV_SLOT - 4, y + INV_SLOT - 4), outline=colour, width=3)
+
+    icon = _load_icon(entry['type'], entry['id'])
+    if icon is None:
+        # missing asset: a visible '?' instead of a crash
+        _draw_question_mark(draw, x + INV_SLOT // 2, y + INV_SLOT // 2)
+    else:
+        canvas.paste(
+            icon, (x + (INV_SLOT - icon.width) // 2, y + (INV_SLOT - icon.height) // 2), mask=icon
+        )
+
+    draw.text((x + 9, y + 7), str(number), font=_font(16), fill=SLOT_NUMBER, anchor='la')
+    if entry['quantity'] > 1:
+        _outlined_text(
+            draw, (x + INV_SLOT - 9, y + INV_SLOT - 8), _fmt_qty(entry['quantity']), _font(24), 'rb'
+        )
+
+
+def _render_inventory_page(entries: list, total_items: int) -> bytes:
+    width = 2 * INV_FRAME + INV_COLS * INV_SLOT + (INV_COLS - 1) * INV_GAP
+    height = 2 * INV_FRAME + INV_HEADER_H + INV_GAP + INV_ROWS * INV_SLOT + (INV_ROWS - 1) * INV_GAP
+
+    canvas = Image.new('RGBA', (width, height), FRAME_OUTER)
+    draw = ImageDraw.Draw(canvas)
+    draw.rectangle((6, 6, width - 7, height - 7), fill=FRAME_INNER)
+    draw.rectangle((12, 12, width - 13, height - 13), fill=GRID_BG)
+
+    # header bar
+    draw.rectangle(
+        (INV_FRAME, INV_FRAME, width - INV_FRAME - 1, INV_FRAME + INV_HEADER_H - 1), fill=SLOT_FILL
+    )
+    mid = INV_FRAME + INV_HEADER_H // 2
+    draw.text((INV_FRAME + 20, mid), 'INVENTORY', font=_font(30), fill=TEXT_DARK, anchor='lm')
+    draw.text((width - INV_FRAME - 20, mid), f'ITEMS  {total_items}', font=_font(24), fill=TEXT, anchor='rm')
+
+    grid_top = INV_FRAME + INV_HEADER_H + INV_GAP
+    for index in range(INV_PER_PAGE):
+        col, row = index % INV_COLS, index // INV_COLS
+        x = INV_FRAME + col * (INV_SLOT + INV_GAP)
+        y = grid_top + row * (INV_SLOT + INV_GAP)
+        entry = entries[index] if index < len(entries) else None
+        _draw_inventory_slot(canvas, draw, x, y, index + 1, entry)
+
+    buffer = io.BytesIO()
+    canvas.save(buffer, format='PNG')
+    return buffer.getvalue()
+
+
+def _render_inventory(entries: list):
+    """-> (list of PNG bytes, list of captions), one of each per page."""
+    if not entries:
+        return [_render_inventory_page([], 0)], ['Your inventory is empty.']
+
+    pages, captions = [], []
+    for start in range(0, len(entries), INV_PER_PAGE):
+        chunk = entries[start:start + INV_PER_PAGE]
+        pages.append(_render_inventory_page(chunk, len(entries)))
+        # slots have no tooltips on an image, so list the names under it in slot order
+        captions.append(' · '.join(f'`{n}` {e["name"]}' for n, e in enumerate(chunk, start=1)))
+    return pages, captions
+
+
+async def create_inventory_pages(db: MainDB, user: discord.User):
+    """Raises ValueError if the user has no account. Returns (pages, captions) for Pagination."""
+    rows = await db.search_inventory(user.id)
+
+    entries = []
+    for item_id, quantity in rows:
+        item = db.items.get(item_id)
+        if item is None:
+            continue  # item was removed from items.json after the user got it
+        entries.append({
+            'id': item_id, 'type': item['type'], 'name': item['name'],
+            'rarity': item.get('rarity', 'common'), 'quantity': quantity,
+        })
+
+    def sort_key(e):
+        type_rank = TYPE_ORDER.index(e['type']) if e['type'] in TYPE_ORDER else len(TYPE_ORDER)
+        rarity_rank = RARITY_ORDER.index(e['rarity']) if e['rarity'] in RARITY_ORDER else len(RARITY_ORDER)
+        return type_rank, rarity_rank, e['name']
+
+    entries.sort(key=sort_key)
+
+    # Pillow work is CPU-bound; keep it off the event loop
+    return await asyncio.to_thread(_render_inventory, entries)
