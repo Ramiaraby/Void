@@ -1,6 +1,7 @@
 from PIL import Image, ImageDraw, ImageFont
 import discord
 import io
+from game_logic.calculations import calculate_user_stats
 from data.database import MainDB
 
 equipment_to_display = {
@@ -15,10 +16,11 @@ equipment_to_display = {
     'accessory': (315, 330, 5, 0)
 }
 
+font = ImageFont.truetype("assets/other/pixelfont.TTF", 23)
 
-async def create_profile_image(db: MainDB, author: discord.User):   
+async def create_profile_image(db: MainDB, user: discord.User):   
     profile_bg = Image.open('assets/other/profile.png') 
-    user_info = await db.get_user_info(author.id)
+    user_info = await db.get_user_info(user.id)
     for equipment, pos in equipment_to_display.items():
         if user_info[equipment] is not None:
             img = Image.open(
@@ -33,6 +35,14 @@ async def create_profile_image(db: MainDB, author: discord.User):
             profile_bg.paste(
                 img, (pos[0], pos[1]), mask=img    
             )
+
+    stats = await calculate_user_stats(db, user)
+    draw = ImageDraw.Draw(profile_bg)
+    draw.text((128, 120), f"STR {stats['strength']}", font=font, fill="white")
+    draw.text((128, 140), f"DEF {stats['defense']}", font=font, fill="white")
+    draw.text((128, 160), f"AGI {stats['agility']}", font=font, fill="white")
+    draw.text((218, 120), f"LCK {stats['luck']}", font=font, fill="white")
+    draw.text((218, 140), f"INT {stats['intelligence']}", font=font, fill="white")
 
     buffer = io.BytesIO()
     profile_bg.save(buffer, format="PNG")

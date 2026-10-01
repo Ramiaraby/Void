@@ -1,5 +1,6 @@
 import aiosqlite
 import json
+from game_logic.calculations import calculate_user_stats
 import asyncio
 
 class MainDB:
@@ -117,6 +118,16 @@ class MainDB:
                     equipped_item,
                     1
                 )
+                user_stats = await calculate_user_stats(self, user_info)
+                if user_stats['hp'] < user_info['hp']:
+                    await self.connection.execute(
+                        """
+                        UPDATE users
+                        SET hp = ?
+                        WHERE user_id = ?
+                        """,
+                        (user_stats['hp'], user_id)
+                    )
 
                 await self.connection.commit()
 
@@ -127,8 +138,7 @@ class MainDB:
     async def equip_item(self, user_id, item_id):
         async with self.transaction_lock:
             try:
-                if not await self.user_exists(user_id):
-                    raise ValueError("User not found.")
+                user_info = await self.get_user_info(user_id)
 
                 if item_id not in self.items:
                     raise ValueError("Item does not exist.")
@@ -178,6 +188,17 @@ class MainDB:
                     item_id,
                     1
                 )
+                
+                user_stats = await calculate_user_stats(self, user_info)
+                if user_stats['hp'] < user_info['hp']:
+                    await self.connection.execute(
+                        """
+                        UPDATE users
+                        SET hp = ?
+                        WHERE user_id = ?
+                        """,
+                        (user_stats['hp'], user_id)
+                    )
 
                 await self.connection.commit()
 
@@ -409,6 +430,9 @@ class MainDB:
     # LEVELING SYSTEM
     #____________________________
 
+    def exp_for_next_level(self, level: int):
+        return int(100 * (1.45 ** (level - 1)))
+    
     async def add_exp(self, user_id, amount:int):
         async with self.transaction_lock:
             try:
@@ -418,12 +442,12 @@ class MainDB:
 
                 lvl = user_info['level']
                 exp = user_info['exp']+amount
-                required_exp = int(100 * (1.45 ** (lvl - 1)))
-
+                required_exp = self.exp_for_next_level(exp)
+                
                 while exp >= required_exp:
                     exp -= required_exp
                     lvl += 1
-                    required_exp = int(100 * (1.45 ** (lvl - 1)))
+                    required_exp = self.exp_for_next_level(lvl)
 
                 await self.connection.execute(
                     """

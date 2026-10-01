@@ -1,5 +1,6 @@
 import discord
-from game_logic import error_handling, image_creation
+from game_logic.error_handling import error_message
+from game_logic.calculations import calculate_user_stats, equipments
 from discord.ext import commands
 from data.database import MainDB
 
@@ -49,7 +50,7 @@ class UserCommands(commands.Cog, name='Users'):
         try:
             await self.db.add_new_user(ctx.author.id)
         except ValueError as e:
-            await ctx.send(embed=error_handling.error_message(e))
+            await ctx.send(embed=error_message(e))
             return
 
         await ctx.send('You have created an account, you may start your journey!')
@@ -59,7 +60,7 @@ class UserCommands(commands.Cog, name='Users'):
         try: 
             await self.db.get_user_info(ctx.author.id)
         except ValueError as e:
-            await ctx.send(embed=error_handling.error_message(e))
+            await ctx.send(embed=error_message(e))
             return
 
         embed = discord.Embed(
@@ -74,5 +75,35 @@ class UserCommands(commands.Cog, name='Users'):
     @commands.command(name='profile', help='Check a user or your own RPG profile.')
     async def profile(self, ctx, user: discord.User=None):
         user = ctx.author if user is None else user
+        try:
+            user_info = await self.db.get_user_info(user.id)
+        except ValueError as e:
+            await ctx.send(embed=error_message(e))
+            return
+        user_stats = await calculate_user_stats(self.db, user)
+        embed = discord.Embed(
+            title=f'{user.display_name}\'s Profile!',
+            description='',
+            color=discord.Color.darker_grey()
+        )
+        embed.set_author(name=user.name, icon_url=user.display_avatar)
+        embed.description += '**Stats**\n'
+        for stat, value in user_stats.items():
+            embed.description += f'> **{stat.replace("_", " ").capitalize()}: {value}**\n'
+            if f'base_{stat}' in user_info:
+                del user_info[f'base_{stat}']
+        embed.description += '\n'
+        
+        del user_info['user_id']
+        del user_info['max_hp']
+        del user_info['max_mana']
+        user_info['current_hp'] = user_info.pop('hp')
+        user_info['current_mana'] = user_info.pop('mana')
+        embed.description += '**Equipment/Info**\n'
+        for info, value in user_info.items():
+            if value is not None:
+                embed.description += f"> **{info.replace('_', ' ').capitalize()}: {self.db.items[value]['name'] if self.db.items.get(value) else value}**\n"
 
-        await ctx.send(file=await image_creation.create_profile_image(self.db, user))
+        await ctx.send(embed=embed)
+
+        
