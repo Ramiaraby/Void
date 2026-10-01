@@ -442,7 +442,7 @@ class MainDB:
 
                 lvl = user_info['level']
                 exp = user_info['exp']+amount
-                required_exp = self.exp_for_next_level(exp)
+                required_exp = self.exp_for_next_level(lvl)
                 
                 while exp >= required_exp:
                     exp -= required_exp

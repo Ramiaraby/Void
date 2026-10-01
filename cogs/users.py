@@ -1,6 +1,6 @@
 import discord
 from game_logic.error_handling import error_message
-from game_logic.calculations import calculate_user_stats, equipments
+from game_logic.image_creation import create_profile_image
 from discord.ext import commands
 from data.database import MainDB
 
@@ -80,30 +80,19 @@ class UserCommands(commands.Cog, name='Users'):
         except ValueError as e:
             await ctx.send(embed=error_message(e))
             return
-        user_stats = await calculate_user_stats(self.db, user)
-        embed = discord.Embed(
-            title=f'{user.display_name}\'s Profile!',
-            description='',
-            color=discord.Color.darker_grey()
-        )
-        embed.set_author(name=user.name, icon_url=user.display_avatar)
-        embed.description += '**Stats**\n'
-        for stat, value in user_stats.items():
-            embed.description += f'> **{stat.replace("_", " ").capitalize()}: {value}**\n'
-            if f'base_{stat}' in user_info:
-                del user_info[f'base_{stat}']
-        embed.description += '\n'
+
+        file = await create_profile_image(self.db, user)
+        await ctx.send(file=file)
         
-        del user_info['user_id']
-        del user_info['max_hp']
-        del user_info['max_mana']
-        user_info['current_hp'] = user_info.pop('hp')
-        user_info['current_mana'] = user_info.pop('mana')
-        embed.description += '**Equipment/Info**\n'
-        for info, value in user_info.items():
-            if value is not None:
-                embed.description += f"> **{info.replace('_', ' ').capitalize()}: {self.db.items[value]['name'] if self.db.items.get(value) else value}**\n"
 
-        await ctx.send(embed=embed)
+    @commands.command(name='inventory', help='Check your inventory.')
+    async def inv(self, ctx: commands.Context):
+        try:
+            inventory = await self.db.search_inventory(ctx.author.id)
+        except ValueError as e:
+            await ctx.send(embed=error_message(e))
+            return
 
+        embed = discord.Embed(title='Your Inventory!', color=discord.Color.darker_grey())
+        embed.set_author(name=ctx.author.name, icon_url=ctx.author.display_avatar)
         
