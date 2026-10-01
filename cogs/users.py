@@ -1,5 +1,5 @@
 import discord
-from game_logic import error_handling
+from game_logic import error_handling, image_creation
 from discord.ext import commands
 from data.database import MainDB
 
@@ -70,3 +70,9 @@ class UserCommands(commands.Cog, name='Users'):
         embed.set_footer(text='This cannot be reversed')
 
         await ctx.send(embed=embed, view=DeleteView(self.db, ctx))
+
+    @commands.command(name='profile', help='Check a user or your own RPG profile.')
+    async def profile(self, ctx, user: discord.User=None):
+        user = ctx.author if user is None else user
+
+        await ctx.send(file=await image_creation.create_profile_image(self.db, user))
