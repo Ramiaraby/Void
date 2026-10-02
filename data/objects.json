@@ -1,0 +1,271 @@
+{
+    "oak_tree": {
+        "name": "Oak Tree",
+        "asset": "map/oak_tree",
+        "blocking": true,
+        "tool": "axe",
+        "strength_required": 0,
+        "drops": [
+            {
+                "item": "oak_wood",
+                "chance": 1.0,
+                "amount": [
+                    2,
+                    4
+                ]
+            },
+            {
+                "item": "apple",
+                "chance": 0.25,
+                "amount": [
+                    1,
+                    2
+                ]
+            }
+        ],
+        "biomes": {
+            "forest": 0.15,
+            "plains": 0.02
+        }
+    },
+    "birch_tree": {
+        "name": "Birch Tree",
+        "asset": "map/birch_tree",
+        "blocking": true,
+        "tool": "axe",
+        "strength_required": 0,
+        "drops": [
+            {
+                "item": "birch_wood",
+                "chance": 1.0,
+                "amount": [
+                    2,
+                    4
+                ]
+            }
+        ],
+        "biomes": {
+            "birch_forest": 0.16,
+            "forest": 0.02,
+            "plains": 0.008
+        }
+    },
+    "spruce_tree": {
+        "name": "Spruce Tree",
+        "asset": "map/spruce_tree",
+        "blocking": true,
+        "tool": "axe",
+        "strength_required": 0,
+        "drops": [
+            {
+                "item": "oak_wood",
+                "chance": 1.0,
+                "amount": [
+                    1,
+                    3
+                ]
+            }
+        ],
+        "biomes": {
+            "tundra": 0.08,
+            "snowy_peaks": 0.02
+        }
+    },
+    "cactus": {
+        "name": "Cactus",
+        "asset": "map/cactus",
+        "blocking": true,
+        "tool": null,
+        "strength_required": 0,
+        "drops": [],
+        "biomes": {
+            "desert": 0.03
+        }
+    },
+    "bush": {
+        "name": "Bush",
+        "asset": "map/bush",
+        "blocking": false,
+        "tool": null,
+        "strength_required": 0,
+        "drops": [],
+        "biomes": {
+            "plains": 0.04,
+            "forest": 0.03,
+            "birch_forest": 0.03,
+            "tundra": 0.012
+        }
+    },
+    "rock": {
+        "name": "Rock",
+        "asset": "map/rock",
+        "blocking": true,
+        "tool": "pickaxe",
+        "strength_required": 5,
+        "drops": [
+            {
+                "item": "stone",
+                "chance": 1.0,
+                "amount": [
+                    1,
+                    3
+                ]
+            }
+        ],
+        "biomes": {
+            "mountains": 0.045,
+            "snowy_peaks": 0.03,
+            "plains": 0.004,
+            "tundra": 0.006,
+            "desert": 0.006,
+            "beach": 0.003
+        }
+    },
+    "coal_ore": {
+        "name": "Coal Deposit",
+        "asset": "material/coal",
+        "blocking": true,
+        "tool": "pickaxe",
+        "strength_required": 5,
+        "drops": [
+            {
+                "item": "coal",
+                "chance": 1.0,
+                "amount": [
+                    1,
+                    3
+                ]
+            }
+        ],
+        "biomes": {
+            "mountains": 0.018,
+            "snowy_peaks": 0.012
+        }
+    },
+    "iron_ore": {
+        "name": "Iron Ore",
+        "asset": "material/iron_ore",
+        "blocking": true,
+        "tool": "pickaxe",
+        "strength_required": 10,
+        "drops": [
+            {
+                "item": "iron_ore",
+                "chance": 1.0,
+                "amount": [
+                    1,
+                    2
+                ]
+            }
+        ],
+        "biomes": {
+            "mountains": 0.012,
+            "snowy_peaks": 0.01
+        }
+    },
+    "golden_ore": {
+        "name": "Golden Ore",
+        "asset": "material/golden_ore",
+        "blocking": true,
+        "tool": "pickaxe",
+        "strength_required": 15,
+        "drops": [
+            {
+                "item": "golden_ore",
+                "chance": 1.0,
+                "amount": [
+                    1,
+                    2
+                ]
+            }
+        ],
+        "biomes": {
+            "mountains": 0.007,
+            "snowy_peaks": 0.007
+        }
+    },
+    "amber_ore": {
+        "name": "Amber Ore",
+        "asset": "material/amber_ore",
+        "blocking": true,
+        "tool": "pickaxe",
+        "strength_required": 20,
+        "drops": [
+            {
+                "item": "amber_ore",
+                "chance": 1.0,
+                "amount": [
+                    1,
+                    2
+                ]
+            }
+        ],
+        "biomes": {
+            "mountains": 0.006,
+            "snowy_peaks": 0.005
+        }
+    },
+    "ruby_ore": {
+        "name": "Ruby Ore",
+        "asset": "material/ruby_ore",
+        "blocking": true,
+        "tool": "pickaxe",
+        "strength_required": 25,
+        "drops": [
+            {
+                "item": "ruby_ore",
+                "chance": 1.0,
+                "amount": [
+                    1,
+                    1
+                ]
+            }
+        ],
+        "biomes": {
+            "mountains": 0.004,
+            "snowy_peaks": 0.005
+        }
+    },
+    "emerald_ore": {
+        "name": "Emerald Ore",
+        "asset": "material/emerald_ore",
+        "blocking": true,
+        "tool": "pickaxe",
+        "strength_required": 30,
+        "drops": [
+            {
+                "item": "emerald_ore",
+                "chance": 1.0,
+                "amount": [
+                    1,
+                    1
+                ]
+            }
+        ],
+        "biomes": {
+            "mountains": 0.003,
+            "snowy_peaks": 0.004
+        }
+    },
+    "diamond_ore": {
+        "name": "Diamond Ore",
+        "asset": "material/diamond_ore",
+        "blocking": true,
+        "tool": "pickaxe",
+        "strength_required": 35,
+        "drops": [
+            {
+                "item": "diamond_ore",
+                "chance": 1.0,
+                "amount": [
+                    1,
+                    1
+                ]
+            }
+        ],
+        "biomes": {
+            "mountains": 0.002,
+            "snowy_peaks": 0.003
+        }
+    }
+}

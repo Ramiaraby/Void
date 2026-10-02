@@ -3,7 +3,7 @@ import io
 import discord
 from cogs.utility import Pagination
 from game_logic.error_handling import error_message
-from game_logic.image_creation import create_profile_image, create_inventory_pages
+from game_logic.image_creation import create_profile_image, create_inventory_pages, create_map_image
 from discord.ext import commands
 from data.database import MainDB
 
@@ -103,3 +103,17 @@ class UserCommands(commands.Cog, name='Users'):
 
         view = Pagination(pages, author_id=ctx.author.id, filename='inventory')
         view.message = await ctx.send(**view.send_kwargs(), view=view)
+
+    @commands.command(name='map', help='Look around you on your map.')
+    async def show_map(self, ctx: commands.Context):
+        try:
+            if not await self.db.map_exists(ctx.author.id):
+                # first time: every player gets their own world (could move to the start command later)
+                await self.db.generate_map(ctx.author.id)
+            async with ctx.typing():
+                image, caption = await create_map_image(self.db, ctx.author)
+        except ValueError as e:
+            await ctx.send(embed=error_message(e))
+            return
+
+        await ctx.send(content=caption, file=discord.File(io.BytesIO(image), filename='map.png'))

@@ -1,0 +1,530 @@
+{
+    "chicken": {
+        "name": "Chicken",
+        "hostile": false,
+        "level": 1,
+        "hp": 8,
+        "strength": 0,
+        "defense": 0,
+        "agility": 6,
+        "exp": 2,
+        "coins": [
+            0,
+            0
+        ],
+        "drops": [
+            {
+                "item": "feather",
+                "chance": 0.8,
+                "amount": [
+                    1,
+                    3
+                ]
+            }
+        ],
+        "biomes": {
+            "plains": 0.01,
+            "forest": 0.006,
+            "birch_forest": 0.006
+        }
+    },
+    "duck": {
+        "name": "Duck",
+        "hostile": false,
+        "level": 1,
+        "hp": 8,
+        "strength": 0,
+        "defense": 0,
+        "agility": 8,
+        "exp": 2,
+        "coins": [
+            0,
+            0
+        ],
+        "drops": [
+            {
+                "item": "feather",
+                "chance": 0.8,
+                "amount": [
+                    1,
+                    2
+                ]
+            }
+        ],
+        "biomes": {
+            "beach": 0.012,
+            "plains": 0.003,
+            "birch_forest": 0.002
+        }
+    },
+    "fish": {
+        "name": "Fish",
+        "hostile": false,
+        "level": 1,
+        "hp": 5,
+        "strength": 0,
+        "defense": 0,
+        "agility": 14,
+        "exp": 2,
+        "coins": [
+            0,
+            0
+        ],
+        "drops": [],
+        "biomes": {
+            "ocean": 0.004,
+            "river": 0.03
+        },
+        "habitat": "water"
+    },
+    "crab": {
+        "name": "Crab",
+        "hostile": false,
+        "level": 1,
+        "hp": 12,
+        "strength": 0,
+        "defense": 6,
+        "agility": 5,
+        "exp": 4,
+        "coins": [
+            0,
+            0
+        ],
+        "drops": [],
+        "biomes": {
+            "beach": 0.015
+        }
+    },
+    "sheep": {
+        "name": "Sheep",
+        "hostile": false,
+        "level": 1,
+        "hp": 20,
+        "strength": 0,
+        "defense": 1,
+        "agility": 3,
+        "exp": 4,
+        "coins": [
+            0,
+            0
+        ],
+        "drops": [
+            {
+                "item": "string",
+                "chance": 0.9,
+                "amount": [
+                    1,
+                    3
+                ]
+            }
+        ],
+        "biomes": {
+            "plains": 0.01,
+            "tundra": 0.004,
+            "mountains": 0.002
+        }
+    },
+    "pig": {
+        "name": "Pig",
+        "hostile": false,
+        "level": 1,
+        "hp": 22,
+        "strength": 0,
+        "defense": 1,
+        "agility": 3,
+        "exp": 5,
+        "coins": [
+            0,
+            0
+        ],
+        "drops": [
+            {
+                "item": "leather",
+                "chance": 0.6,
+                "amount": [
+                    1,
+                    2
+                ]
+            }
+        ],
+        "biomes": {
+            "forest": 0.008,
+            "birch_forest": 0.006,
+            "plains": 0.004
+        }
+    },
+    "goat": {
+        "name": "Goat",
+        "hostile": false,
+        "level": 1,
+        "hp": 24,
+        "strength": 0,
+        "defense": 2,
+        "agility": 8,
+        "exp": 5,
+        "coins": [
+            0,
+            0
+        ],
+        "drops": [
+            {
+                "item": "leather",
+                "chance": 0.7,
+                "amount": [
+                    1,
+                    2
+                ]
+            }
+        ],
+        "biomes": {
+            "mountains": 0.01,
+            "snowy_peaks": 0.006,
+            "plains": 0.002
+        }
+    },
+    "cow": {
+        "name": "Cow",
+        "hostile": false,
+        "level": 1,
+        "hp": 25,
+        "strength": 0,
+        "defense": 2,
+        "agility": 2,
+        "exp": 6,
+        "coins": [
+            0,
+            0
+        ],
+        "drops": [
+            {
+                "item": "leather",
+                "chance": 0.9,
+                "amount": [
+                    1,
+                    3
+                ]
+            }
+        ],
+        "biomes": {
+            "plains": 0.012,
+            "forest": 0.004,
+            "birch_forest": 0.004
+        }
+    },
+    "llama": {
+        "name": "Llama",
+        "hostile": false,
+        "level": 1,
+        "hp": 28,
+        "strength": 0,
+        "defense": 2,
+        "agility": 6,
+        "exp": 6,
+        "coins": [
+            0,
+            0
+        ],
+        "drops": [
+            {
+                "item": "string",
+                "chance": 0.8,
+                "amount": [
+                    1,
+                    2
+                ]
+            },
+            {
+                "item": "leather",
+                "chance": 0.4,
+                "amount": [
+                    1,
+                    1
+                ]
+            }
+        ],
+        "biomes": {
+            "mountains": 0.004,
+            "plains": 0.002
+        }
+    },
+    "dear": {
+        "name": "Deer",
+        "hostile": false,
+        "level": 1,
+        "hp": 30,
+        "strength": 0,
+        "defense": 2,
+        "agility": 12,
+        "exp": 8,
+        "coins": [
+            0,
+            0
+        ],
+        "drops": [
+            {
+                "item": "leather",
+                "chance": 0.8,
+                "amount": [
+                    1,
+                    3
+                ]
+            }
+        ],
+        "biomes": {
+            "forest": 0.006,
+            "birch_forest": 0.008,
+            "tundra": 0.004
+        }
+    },
+    "cat": {
+        "name": "Cat",
+        "hostile": false,
+        "level": 1,
+        "hp": 10,
+        "strength": 0,
+        "defense": 0,
+        "agility": 16,
+        "exp": 1,
+        "coins": [
+            0,
+            0
+        ],
+        "drops": [],
+        "biomes": {
+            "forest": 0.001,
+            "plains": 0.001,
+            "birch_forest": 0.001
+        }
+    },
+    "dog": {
+        "name": "Dog",
+        "hostile": false,
+        "level": 1,
+        "hp": 14,
+        "strength": 0,
+        "defense": 1,
+        "agility": 14,
+        "exp": 1,
+        "coins": [
+            0,
+            0
+        ],
+        "drops": [],
+        "biomes": {
+            "plains": 0.0015,
+            "forest": 0.001
+        }
+    },
+    "spider": {
+        "name": "Spider",
+        "hostile": true,
+        "level": 1,
+        "hp": 30,
+        "strength": 10,
+        "defense": 3,
+        "agility": 12,
+        "exp": 10,
+        "coins": [
+            1,
+            4
+        ],
+        "drops": [
+            {
+                "item": "string",
+                "chance": 0.8,
+                "amount": [
+                    1,
+                    3
+                ]
+            }
+        ],
+        "biomes": {
+            "forest": 0.004,
+            "birch_forest": 0.003,
+            "plains": 0.002,
+            "mountains": 0.003
+        },
+        "min_distance": 8
+    },
+    "wolf": {
+        "name": "Wolf",
+        "hostile": true,
+        "level": 2,
+        "hp": 55,
+        "strength": 16,
+        "defense": 6,
+        "agility": 20,
+        "exp": 22,
+        "coins": [
+            2,
+            8
+        ],
+        "drops": [
+            {
+                "item": "leather",
+                "chance": 0.6,
+                "amount": [
+                    1,
+                    2
+                ]
+            }
+        ],
+        "biomes": {
+            "forest": 0.004,
+            "birch_forest": 0.004,
+            "tundra": 0.006,
+            "mountains": 0.003,
+            "snowy_peaks": 0.003
+        },
+        "min_distance": 10
+    },
+    "crocodile": {
+        "name": "Crocodile",
+        "hostile": true,
+        "level": 4,
+        "hp": 100,
+        "strength": 26,
+        "defense": 18,
+        "agility": 8,
+        "exp": 45,
+        "coins": [
+            6,
+            14
+        ],
+        "drops": [
+            {
+                "item": "leather",
+                "chance": 0.7,
+                "amount": [
+                    1,
+                    3
+                ]
+            }
+        ],
+        "biomes": {
+            "beach": 0.006,
+            "river": 0.02
+        },
+        "min_distance": 14
+    },
+    "bear": {
+        "name": "Bear",
+        "hostile": true,
+        "level": 5,
+        "hp": 150,
+        "strength": 30,
+        "defense": 14,
+        "agility": 10,
+        "exp": 60,
+        "coins": [
+            8,
+            18
+        ],
+        "drops": [
+            {
+                "item": "leather",
+                "chance": 0.8,
+                "amount": [
+                    1,
+                    3
+                ]
+            }
+        ],
+        "biomes": {
+            "forest": 0.002,
+            "birch_forest": 0.002,
+            "tundra": 0.004,
+            "mountains": 0.003
+        },
+        "min_distance": 16
+    },
+    "hippopotamus": {
+        "name": "Hippopotamus",
+        "hostile": true,
+        "level": 6,
+        "hp": 220,
+        "strength": 34,
+        "defense": 26,
+        "agility": 4,
+        "exp": 80,
+        "coins": [
+            10,
+            22
+        ],
+        "drops": [
+            {
+                "item": "leather",
+                "chance": 0.8,
+                "amount": [
+                    2,
+                    4
+                ]
+            }
+        ],
+        "biomes": {
+            "beach": 0.004,
+            "river": 0.015,
+            "plains": 0.001
+        },
+        "min_distance": 18
+    },
+    "lion": {
+        "name": "Lion",
+        "hostile": true,
+        "level": 7,
+        "hp": 140,
+        "strength": 42,
+        "defense": 12,
+        "agility": 24,
+        "exp": 100,
+        "coins": [
+            14,
+            30
+        ],
+        "drops": [
+            {
+                "item": "leather",
+                "chance": 0.8,
+                "amount": [
+                    1,
+                    3
+                ]
+            }
+        ],
+        "biomes": {
+            "desert": 0.004,
+            "plains": 0.002
+        },
+        "min_distance": 20
+    },
+    "tiger": {
+        "name": "Tiger",
+        "hostile": true,
+        "level": 8,
+        "hp": 170,
+        "strength": 50,
+        "defense": 14,
+        "agility": 28,
+        "exp": 130,
+        "coins": [
+            18,
+            38
+        ],
+        "drops": [
+            {
+                "item": "leather",
+                "chance": 0.8,
+                "amount": [
+                    1,
+                    3
+                ]
+            }
+        ],
+        "biomes": {
+            "forest": 0.002,
+            "birch_forest": 0.003,
+            "desert": 0.001
+        },
+        "min_distance": 24
+    }
+}

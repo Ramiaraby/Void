@@ -433,3 +433,118 @@ async def create_inventory_pages(db: MainDB, user: discord.User):
 
     # Pillow work is CPU-bound; keep it off the event loop
     return await asyncio.to_thread(_render_inventory, entries)
+
+
+# ___________________________
+# MAP
+# ___________________________
+
+MAP_TILE = 64          # one map tile on the image (16px tiles -> 4x, 32px mobs -> 2x)
+MAP_HEADER_H = 60
+MAP_FRAME = INV_FRAME
+PLAYER_RING = (255, 255, 255)
+
+
+def _tile_sprite(folder: str, name: str, size: int = MAP_TILE):
+    """assets/{folder}/{name}.png stretched to a whole number of pixels per source pixel, centred in a tile."""
+    key = (folder, name, size)
+    if key not in _tile_cache:
+        path = ASSETS / folder / f'{name}.png'
+        if path.is_file():
+            img = Image.open(path).convert('RGBA')
+            scale = max(1, size // max(img.size))
+            img = img.resize((img.width * scale, img.height * scale), resample=Image.Resampling.NEAREST)
+        else:
+            img = None
+        _tile_cache[key] = img
+    return _tile_cache[key]
+
+
+_tile_cache = {}
+
+
+def _paste_centered(canvas, sprite, x, y, size=MAP_TILE):
+    canvas.paste(sprite, (x + (size - sprite.width) // 2, y + (size - sprite.height) // 2), mask=sprite)
+
+
+def _draw_missing(draw, x, y):
+    _draw_question_mark(draw, x + MAP_TILE // 2, y + MAP_TILE // 2, px=5)
+
+
+def _sanitize(text: str) -> str:
+    # the font's space is very narrow, so word breaks get two of them
+    return re.sub(r'[^A-Za-z0-9 ]+', '  ', text).strip().upper()
+
+
+def _render_map(view: dict, objects_rules: dict) -> bytes:
+    cols = view['x2'] - view['x1'] + 1
+    rows = view['y2'] - view['y1'] + 1
+    grid_w, grid_h = cols * MAP_TILE, rows * MAP_TILE
+    width = 2 * MAP_FRAME + grid_w
+    height = 2 * MAP_FRAME + MAP_HEADER_H + INV_GAP + grid_h
+
+    canvas = Image.new('RGBA', (width, height), FRAME_OUTER)
+    draw = ImageDraw.Draw(canvas)
+    draw.rectangle((6, 6, width - 7, height - 7), fill=FRAME_INNER)
+    draw.rectangle((12, 12, width - 13, height - 13), fill=GRID_BG)
+
+    # header: biome on the left, coordinates on the right
+    draw.rectangle((MAP_FRAME, MAP_FRAME, width - MAP_FRAME - 1, MAP_FRAME + MAP_HEADER_H - 1), fill=SLOT_FILL)
+    mid = MAP_FRAME + MAP_HEADER_H // 2
+    px, py = view['player']
+    draw.text((MAP_FRAME + 20, mid), _sanitize(view['player_biome']), font=_font(30), fill=TEXT_DARK, anchor='lm')
+    draw.text((width - MAP_FRAME - 20, mid), f'X {px}   Y {py}', font=_font(24), fill=TEXT, anchor='rm')
+
+    left, top = MAP_FRAME, MAP_FRAME + MAP_HEADER_H + INV_GAP
+    for row in range(rows):
+        for col in range(cols):
+            x, y = left + col * MAP_TILE, top + row * MAP_TILE
+            tile = view['terrain'][row][col]
+            sprite = _tile_sprite('map', tile)
+            if sprite is None:
+                draw.rectangle((x, y, x + MAP_TILE - 1, y + MAP_TILE - 1), fill=SLOT_FILL)
+            else:
+                canvas.paste(sprite, (x, y))
+
+    # things on top of the terrain: objects first, then animals, monsters, and the player last
+    for (wx, wy), object_id in view['objects'].items():
+        x, y = left + (wx - view['x1']) * MAP_TILE, top + (wy - view['y1']) * MAP_TILE
+        asset = objects_rules.get(object_id, {}).get('asset')
+        sprite = _tile_sprite(*asset.split('/', 1)) if asset else None
+        if sprite is None:
+            _draw_missing(draw, x, y)
+        else:
+            _paste_centered(canvas, sprite, x, y)
+
+    for layer in ('animals', 'monsters'):
+        for (wx, wy), mob in view[layer].items():
+            x, y = left + (wx - view['x1']) * MAP_TILE, top + (wy - view['y1']) * MAP_TILE
+            sprite = _tile_sprite('mobs', mob['id'])
+            if sprite is None:
+                _draw_missing(draw, x, y)
+            else:
+                _paste_centered(canvas, sprite, x, y)
+
+    x, y = left + (px - view['x1']) * MAP_TILE, top + (py - view['y1']) * MAP_TILE
+    draw.rectangle((x, y, x + MAP_TILE - 1, y + MAP_TILE - 1), outline=PLAYER_RING, width=3)
+    sprite = _tile_sprite('other', 'player')
+    if sprite is None:
+        _draw_missing(draw, x, y)
+    else:
+        _paste_centered(canvas, sprite, x, y)
+
+    buffer = io.BytesIO()
+    canvas.save(buffer, format='PNG')
+    return buffer.getvalue()
+
+
+async def create_map_image(db: MainDB, user: discord.User):
+    """
+    The player's surroundings as a PNG (11x7 tiles around them).
+    Raises ValueError if the user has no account or no map. Returns (png bytes, caption).
+    """
+    view = await db.get_map_view(user.id)
+    image = await asyncio.to_thread(_render_map, view, db.objects)
+    px, py = view['player']
+    biome = view['player_biome'].replace('_', ' ').title()
+    return image, f'\U0001F4CD {biome} ({px}, {py})'
