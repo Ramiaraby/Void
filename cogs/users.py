@@ -7,6 +7,84 @@ from game_logic.image_creation import create_profile_image, create_inventory_pag
 from discord.ext import commands
 from data.database import MainDB
 
+class MapView(discord.ui.View):
+    """Arrow buttons under the map image. Each press walks one tile and swaps the picture in the same message."""
+
+    BLOCKED_TEXT = {
+        'edge': "That's the edge of the world.",
+        'water': "Water is in the way.",
+    }
+
+    def __init__(self, db: MainDB, user: discord.User):
+        super().__init__(timeout=180)
+        self.db = db
+        self.user = user
+        self.message = None  # set after sending, so the buttons can be disabled on timeout
+
+        # 3x3 pad: arrows in a plus shape, refresh in the middle, the corners are just spacers
+        layout = (
+            (None, ('⬆️', 0, -1), None),
+            (('⬅️', -1, 0), ('🔄', 0, 0), ('➡️', 1, 0)),
+            (None, ('⬇️', 0, 1), None),
+        )
+        for row, cells in enumerate(layout):
+            for cell in cells:
+                if cell is None:
+                    self.add_item(discord.ui.Button(label='\u200b', style=discord.ButtonStyle.secondary, disabled=True, row=row))
+                    continue
+                emoji, dx, dy = cell
+                style = discord.ButtonStyle.secondary if (dx, dy) == (0, 0) else discord.ButtonStyle.primary
+                button = discord.ui.Button(emoji=emoji, style=style, row=row)
+                button.callback = self._make_callback(dx, dy)
+                self.add_item(button)
+
+    def _blocked_text(self, blocked: dict) -> str:
+        kind = blocked['type']
+        if kind in self.BLOCKED_TEXT:
+            return self.BLOCKED_TEXT[kind]
+        if kind == 'object':
+            name = self.db.objects.get(blocked['id'], {}).get('name', 'Something')
+        else:
+            name = self.db.mobs.get(blocked['id'], {}).get('name', 'Something')
+        return f"{name} is in the way."
+
+    def _make_callback(self, dx: int, dy: int):
+        async def callback(interaction: discord.Interaction):
+            await interaction.response.defer()  # rendering can take a moment, don't let the click time out
+            note = ''
+            try:
+                if (dx, dy) != (0, 0):
+                    result = await self.db.move(self.user.id, x=dx or None, y=dy or None)
+                    if result['blocked_by'] is not None:
+                        note = '\n' + self._blocked_text(result['blocked_by'])
+                image, caption = await create_map_image(self.db, self.user)
+            except ValueError as e:
+                await interaction.followup.send(embed=error_message(e), ephemeral=True)
+                return
+            await interaction.edit_original_response(
+                content=caption + note,
+                attachments=[discord.File(io.BytesIO(image), filename='map.png')],
+                view=self,
+            )
+        return callback
+
+    async def interaction_check(self, interaction: discord.Interaction) -> bool:
+        if interaction.user.id != self.user.id:
+            await interaction.response.send_message("❌ This isn't your map. Use !map to see yours.", ephemeral=True)
+            return False
+        return True
+
+    async def on_timeout(self):
+        for child in self.children:
+            child.disabled = True
+        if self.message is not None:
+            try:
+                await self.message.edit(view=self)
+            except discord.HTTPException:
+                pass
+        self.stop()
+
+
 class DeleteView(discord.ui.View):
     def __init__(self, db:MainDB, ctx: commands.Context):
         super().__init__(timeout=60)
@@ -104,7 +182,7 @@ class UserCommands(commands.Cog, name='Users'):
         view = Pagination(pages, author_id=ctx.author.id, filename='inventory')
         view.message = await ctx.send(**view.send_kwargs(), view=view)
 
-    @commands.command(name='map', help='Look around you on your map.')
+    @commands.command(name='map', help='Look around you on your map and walk with the arrow buttons.')
     async def show_map(self, ctx: commands.Context):
         try:
             if not await self.db.map_exists(ctx.author.id):
@@ -116,4 +194,5 @@ class UserCommands(commands.Cog, name='Users'):
             await ctx.send(embed=error_message(e))
             return
 
-        await ctx.send(content=caption, file=discord.File(io.BytesIO(image), filename='map.png'))
+        view = MapView(self.db, ctx.author)
+        view.message = await ctx.send(content=caption, file=discord.File(io.BytesIO(image), filename='map.png'), view=view)
